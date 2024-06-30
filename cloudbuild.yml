@@ -1,15 +1,12 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
     args:
-      [
-        'build',
-        '-t',
-        'europe-west9-docker.pkg.dev/microservices-shop-nestjs/image-registry/orders-ms',
-        '-f',
-        'dockerfile.prod',
-        '--platform=linux/amd64',
-        '.',
-      ]
+      - -c
+      - |
+        docker build -t europe-west9-docker.pkg.dev/microservices-shop-nestjs/image-registry/orders-ms -f dockerfile.prod --platform=linux/amd64 --build-arg ORDERS_DATABASE_URL=$$DATABASE_URL .
+    secretEnv: ['DATABASE_URL']
+
   - name: 'gcr.io/cloud-builders/docker'
     args:
       [
@@ -18,3 +15,8 @@ steps:
       ]
 options:
   logging: CLOUD_LOGGING_ONLY
+
+availableSecrets:
+  secretManager:
+    - versionName: projects/74874566665/secrets/ORDERS_DATABASE_PROD_URL/versions/1
+      env: 'DATABASE_URL'

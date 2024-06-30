@@ -9,6 +9,7 @@ RUN npm install
 FROM node:21-alpine3.19 as build
 ARG ORDERS_DATABASE_PROD_URL
 ENV DATABASE_URL=$ORDERS_DATABASE_PROD_URL
+RUN echo "database_url ::: $ORDERS_DATABASE_PROD_URL";
 WORKDIR /usr/src/app
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY package-lock.json ./
