@@ -23,7 +23,6 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-
   console.log('Test ci-cd');
 
   await app.listen();
