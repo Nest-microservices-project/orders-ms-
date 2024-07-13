@@ -24,7 +24,7 @@ async function bootstrap() {
     }),
   );
 
-  console.log(' Test ci-cd ');
+  console.log('Test ci-cd');
 
   await app.listen();
   logger.log(`Orders Microservice running on port  ${envs.port}`);
