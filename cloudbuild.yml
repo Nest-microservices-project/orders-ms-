@@ -4,7 +4,7 @@ steps:
     args:
       - -c
       - |
-        docker build -t europe-west9-docker.pkg.dev/microservices-shop-nestjs/image-registry/orders-ms -f dockerfile.prod --platform=linux/amd64 --build-arg ORDERS_DATABASE_URL=$$DATABASE_URL .
+        docker build -t europe-west9-docker.pkg.dev/microservices-shop-nestjs/image-registry/orders-ms -f dockerfile.prod --platform=linux/amd64 --build-arg ORDERS_DATABASE_PROD_URL=$$DATABASE_URL .
     secretEnv: ['DATABASE_URL']
 
   - name: 'gcr.io/cloud-builders/docker'
