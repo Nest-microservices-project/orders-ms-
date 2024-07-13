@@ -23,6 +23,7 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
+  console.log('Test ci-cd');
 
   await app.listen();
   logger.log(`Orders Microservice running on port  ${envs.port}`);
